@@ -11,10 +11,11 @@ let controller = {
     init: function() {
         model.generateCardLocs();
         view.addCardsToTable();
-        let cards = document.getElementsByTagName("img");
+        view.initialShowAllCards();
+        /*let cards = document.getElementsByTagName("img");
         for (let i = 0; i < (model.numCardPairs * 2); i++) {
             cards[i].onclick = view.showCard;       
-        };
+        };*/
         view.showNumGuesses();
         view.showScore();
         }
@@ -76,6 +77,34 @@ let view = {
             img.id = "card" + str.slice(-2);
             table.appendChild(img)
         }
+    },
+    initialShowAllCards: function(){
+        //for (let i = 0; i < model.numCardPairs; i++) {            
+            model.cards.forEach(card => card.matchPair.forEach(id => document.getElementById("card" + String(id).padStart(2,"0")).src=card.image));
+            /*for (let j in model.cards[i].matchPair)
+            {
+                let cardNum = "card" + String(model.cards[i].matchPair[j]).padStart(2,"0");
+                let pic = document.getElementById(cardNum);
+                pic.src = cardPic;
+            };*/
+            //cards[i].src = cardPic;  
+             
+        //};  
+        setTimeout(this.flipAllBack, '3000');
+
+    },
+    flipAllBack: function(){
+        //for (let i = 0; i < model.numCardPairs; i++) {
+            model.cards.forEach(card => card.matchPair.forEach(id => document.getElementById("card" + String(id).padStart(2,"0")).src=model.cardBackImage));
+            model.cards.forEach(card => card.matchPair.forEach(id => document.getElementById("card" + String(id).padStart(2,"0")).onclick = view.showCard));
+            /*for (let j in model.cards[i].matchPair)
+            {
+                let cardNum = "card" + String(model.cards[i].matchPair[j]).padStart(2,"0");
+                let pic = document.getElementById(cardNum);
+                pic.src = model.cardBackImage;
+            };*/
+            //cards[i].src = cardPic;  
+     
     }
 
 };
@@ -84,56 +113,19 @@ let model = {
     numCardPairs: 12, 
     score: 0,
     cardBackImage: "MemoryCardBack.png",
-    cards: [{
+    cards: [
+     // Copy this section for each card   
+    {
         type: "a1",
         image: "A1.png",
     },
+    // End copied section
     {
         type: "s1",
         image: "S1.png",
     }
-    /*{
-        type: "giraffe",
-        image: "giraffe.png",
-    },
-    {
-        type: "lion",
-        image: "lion.png",
-    },{
-        type: "turtle",
-        image: "turtle.png",
-    },
-    {
-        type: "whale",
-        image: "whale.png",
-    },
-    {
-        type: "zebra",
-        image: "zebra.png",
-    },{
-        type: "tnahpele",
-        image: "tnahpele.png",
-    },
-    {
-        type: "effarig",
-        image: "effarig.png",
-    },
-    {
-        type: "noil",
-        image: "noil.png",
-    },{
-        type: "eltrut",
-        image: "eltrut.png",
-    },
-    {
-        type: "elahw",
-        image: "elahw.png",
-    },
-    {
-        type: "arbez",
-        image: "arbez.png",
-    }*/
-     ],
+    // No comma on last entry!
+    ],
     checkUserGuess: function(userGuess) {
         let isUserGuessMatch= false;
         for (let i = 0; i < this.numCardPairs; i++) {
