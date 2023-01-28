@@ -2,20 +2,28 @@ let controller = {
     userGuess: [],
     numGuesses: 0,
     numMatches: 0,
+    previewCardArrangement: 0, // if you set this to 1 you get a preview of all the cards for a few seconds before starting the game. useful when lots of cards?
     passUserGuess: function() {
          if (this.userGuess.length === 2) { 
-            model.checkUserGuess()
+            model.checkUserGuess();
          }
 
     },
     init: function() {
         model.generateCardLocs();
         view.addCardsToTable();
-        view.initialShowAllCards();
-        /*let cards = document.getElementsByTagName("img");
-        for (let i = 0; i < (model.numCardPairs * 2); i++) {
-            cards[i].onclick = view.showCard;       
-        };*/
+        if (this.previewCardArrangement === 1)
+        {
+            // if we have option set to preview the deck, set all cards face up and then
+            // turn them to backs and enable clicks after 3000 milliseconds
+            view.initialShowAllCards();
+            setTimeout(view.flipAllBack, '3000');
+        }
+        else
+        {
+            // Sets all cards to show backs and adds a click handler
+            view.flipAllBack();
+        }
         view.showNumGuesses();
         view.showScore();
         }
@@ -79,47 +87,26 @@ let view = {
         }
     },
     initialShowAllCards: function(){
-        //for (let i = 0; i < model.numCardPairs; i++) {            
             model.cards.forEach(card => card.matchPair.forEach(id => document.getElementById("card" + String(id).padStart(2,"0")).src=card.image));
-            /*for (let j in model.cards[i].matchPair)
-            {
-                let cardNum = "card" + String(model.cards[i].matchPair[j]).padStart(2,"0");
-                let pic = document.getElementById(cardNum);
-                pic.src = cardPic;
-            };*/
-            //cards[i].src = cardPic;  
-             
-        //};  
-        setTimeout(this.flipAllBack, '3000');
-
     },
     flipAllBack: function(){
-        //for (let i = 0; i < model.numCardPairs; i++) {
             model.cards.forEach(card => card.matchPair.forEach(id => document.getElementById("card" + String(id).padStart(2,"0")).src=model.cardBackImage));
-            model.cards.forEach(card => card.matchPair.forEach(id => document.getElementById("card" + String(id).padStart(2,"0")).onclick = view.showCard));
-            /*for (let j in model.cards[i].matchPair)
-            {
-                let cardNum = "card" + String(model.cards[i].matchPair[j]).padStart(2,"0");
-                let pic = document.getElementById(cardNum);
-                pic.src = model.cardBackImage;
-            };*/
-            //cards[i].src = cardPic;  
-     
+            model.cards.forEach(card => card.matchPair.forEach(id => document.getElementById("card" + String(id).padStart(2,"0")).onclick = view.showCard));    
     }
 
 };
 
 let model = {
-    numCardPairs: 12, 
+    numCardPairs: 12, // This will be updated later based on length of model.cards so no need to change this manually
     score: 0,
     cardBackImage: "MemoryCardBack.png",
     cards: [
-     // Copy this section for each card   
+    // Copy this section for each card   
     {
         type: "a1",
         image: "A1.png",
     },
-    // End copied section
+    // End section to copy
     {
         type: "s1",
         image: "S1.png",
