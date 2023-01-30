@@ -44,7 +44,7 @@ let view = {
         controller.userGuess.push(cardNum);
         controller.passUserGuess();
     } else {
-        view.hideCard();
+        setTimeout(view.hideCard, 1000);
         }
     },
     hideCard: function() {
