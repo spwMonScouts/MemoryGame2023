@@ -44,7 +44,7 @@ let view = {
         controller.userGuess.push(cardNum);
         controller.passUserGuess();
     } else {
-        setTimeout(view.hideCard, 1000);
+        view.hideCard();
         }
     },
     hideCard: function() {
@@ -204,7 +204,7 @@ let model = {
             this.checkWhetherGameIsWon();
         }
         else {
-            setTimeout(view.hideCard, 500);
+            setTimeout(view.hideCard, 1500);
             controller.numGuesses = controller.numGuesses + 1;
             view.showNumGuesses();
         }
