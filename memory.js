@@ -103,13 +103,79 @@ let model = {
     cards: [
     // Copy this section for each card   
     {
-        type: "a1",
-        image: "A1.png",
+        type: "BV1",
+        image: "BV1.png",
+    },
+    // End section to copy
+    // Copy this section for each card   
+    {
+        type: "BV2",
+        image: "BV2.png",
+    },
+    // End section to copy
+    // Copy this section for each card   
+    {
+        type: "BV3",
+        image: "BV3.png",
+    },
+    // End section to copy
+    // Copy this section for each card   
+    {
+        type: "BV4",
+        image: "BV4.png",
+    },
+    // End section to copy
+    // Copy this section for each card   
+    {
+        type: "BV5",
+        image: "BV5.png",
+    },
+    // End section to copy
+    // Copy this section for each card   
+    {
+        type: "BV6",
+        image: "BV6.png",
+    },
+    // End section to copy
+    // Copy this section for each card   
+    {
+        type: "BV7",
+        image: "BV7.png",
+    },
+    // End section to copy
+    // Copy this section for each card   
+    {
+        type: "BV8",
+        image: "BV8.png",
+    },
+    // End section to copy
+        // Copy this section for each card   
+    {
+        type: "BV9",
+        image: "BV9.png",
+    },
+    // End section to copy
+    // Copy this section for each card   
+    {
+        type: "BV10",
+        image: "BV10.png",
+    },
+    // End section to copy
+    // Copy this section for each card   
+    {
+        type: "BV11",
+        image: "BV11.png",
+    },
+    // End section to copy
+    // Copy this section for each card   
+    {
+        type: "BV12",
+        image: "BV12.png",
     },
     // End section to copy
     {
-        type: "s1",
-        image: "S1.png",
+        type: "BV13",
+        image: "BV13.png",
     }
     // No comma on last entry!
     ],
